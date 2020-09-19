@@ -11,25 +11,39 @@ A command line tool to manage Google Compute Engine.
 
 ## Usage
 
-### Get Instances
+### Get instances list
 
 ```sh
 env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl -project=xxxxxxxxx -zone=xxxxxxx
 ```
 
-### Start Instance
+The ouput looks like this:
 
 ```sh
-env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl -project=xxxxxxxxx -zone=xxxxxxx -start -instance=xxxxxxx
++---------------------+----------------+-------------+------------+------------+
+|         ID          |      NAME      | MACHINETYPE | IP ADDRESS |   STATUS   |
++---------------------+----------------+-------------+------------+------------+
+| xxxxxxxxxxxxxxxxxxx | test-instance1 | f1-micro    | 10.xxx.x.2 | TERMINATED |
++---------------------+----------------+-------------+------------+------------+
 ```
 
-### Stop Instance
+### Start instance
 
 ```sh
-env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl -project=xxxxxxxxx -zone=xxxxxxx -stop -instance=xxxxxxx
+env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl \
+  -project=xxxxxxxxx -zone=xxxxxxx -start -instance=xxxxxxx
+```
+
+### Stop instance
+
+```sh
+env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl \
+  -project=xxxxxxxxx -zone=xxxxxxx -stop -instance=xxxxxxx
 ```
 
 ## Tips
+
+### Please use direnv
 
 Create a `.envrc` file as follows.
 
@@ -42,4 +56,14 @@ And run gcectrl.
 
 ```sh
 gcectrl
+```
+
+It's very simply.
+
+### Automatic execution
+
+There is no batch mode in gcectrl, but it is possible to run it automatically.
+
+```sh
+echo 'y' | /path/to/gcectrl -start -instance=xxxxxxxxx
 ```

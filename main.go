@@ -14,16 +14,17 @@ import (
 )
 
 const (
-	AppVersion = "0.0.1"
+	AppVersion = "0.0.2"
 )
 
 var (
 	argProject  = flag.String("project", "", "Specify a Project ID.")
 	argZone     = flag.String("zone", "us-west1-b", "Specify a Zone Name.")
-	argInstance = flag.String("instance", "", "Specify the Instance ID.")
+	argInstance = flag.String("instance", "", "Specify the instance ID.")
 	argStart    = flag.Bool("start", false, "Start instances.")
-	argStop     = flag.Bool("stop", false, "Stop Instances.")
-	argVersion  = flag.Bool("version", false, "Print Version Number.")
+	argStop     = flag.Bool("stop", false, "Stop instances.")
+	argBatch    = flag.Bool("batch", false, "Enable batch mode.")
+	argVersion  = flag.Bool("version", false, "Print Version.")
 )
 
 func lastElements(str string, sep string) string {
@@ -158,6 +159,7 @@ func main() {
 				fmt.Println("Interrupted.")
 				os.Exit(1)
 			}
+			fmt.Println("Instance Started.")
 		} else if *argStop {
 			result := stopInstance(client, project, zone, *argInstance)
 			fmt.Println("Instance Stopping...")
@@ -165,17 +167,17 @@ func main() {
 				fmt.Println("Interrupted.")
 				os.Exit(1)
 			}
+			fmt.Println("Instance Stopped.")
 		} else {
 			fmt.Println("Please set `start` or `stop` option.")
 			os.Exit(1)
 		}
-	} else {
-		list, err := listInstances(client, project, zone)
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			return
-		}
-		printInstances(list)
-		os.Exit(0)
 	}
+	list, err := listInstances(client, project, zone)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return
+	}
+	printInstances(list)
+	os.Exit(0)
 }

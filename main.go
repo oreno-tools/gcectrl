@@ -13,9 +13,6 @@ import (
 	"strings"
 )
 
-// const project = "gce-manage-debug"
-// const zone = "us-west1-b"
-
 const (
 	AppVersion = "0.0.1"
 )

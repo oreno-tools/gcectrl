@@ -6,8 +6,17 @@ A command line tool to manage Google Compute Engine.
 
 ## Preapre
 
+### Setup GCP
+
 * Create Service Acccount
 * Create JSON Key and download it.
+
+### Install gcectrl
+
+```sh
+wget https://github.com/oreno-tools/gcectrl/releases/download/latest/gcectrl_darwin_amd64 -O ~/bin/gcectrl
+chmod +x ~/bin/gcectrl
+```
 
 ## Usage
 

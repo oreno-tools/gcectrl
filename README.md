@@ -23,7 +23,8 @@ chmod +x ~/bin/gcectrl
 ### Get instances list
 
 ```sh
-env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl -project=xxxxxxxxx -zone=xxxxxxx
+env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl \
+  -project=xxxxxxxxx -zone=xxxxxxx
 ```
 
 The ouput looks like this:
@@ -40,14 +41,14 @@ The ouput looks like this:
 
 ```sh
 env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl \
-  -project=xxxxxxxxx -zone=xxxxxxx -start -instance=xxxxxxx
+  -project=xxxxxxxxx -zone=xxxxxxx -start -instance=test-instance1
 ```
 
 ### Stop instance
 
 ```sh
 env GOOGLE_APPLICATION_CREDENTIALS=credential.json gcectrl \
-  -project=xxxxxxxxx -zone=xxxxxxx -stop -instance=xxxxxxx
+  -project=xxxxxxxxx -zone=xxxxxxx -stop -instance=test-instance1
 ```
 
 ## Tips
@@ -74,5 +75,5 @@ It's very simply.
 There is no batch mode in gcectrl, but it is possible to run it automatically.
 
 ```sh
-echo 'y' | /path/to/gcectrl -start -instance=xxxxxxxxx
+echo 'y' | /path/to/gcectrl -start -instance=test-instance1
 ```

@@ -161,6 +161,7 @@ func main() {
 				os.Exit(1)
 			}
 			fmt.Println("Instance Started.")
+			os.Exit(0)
 		} else if *argStop {
 			result := stopInstance(client, project, zone, *argInstance)
 			fmt.Println("Instance Stopping...")
@@ -169,6 +170,7 @@ func main() {
 				os.Exit(1)
 			}
 			fmt.Println("Instance Stopped.")
+			os.Exit(0)
 		} else {
 			fmt.Println("Please set `start` or `stop` option.")
 			os.Exit(1)

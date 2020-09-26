@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	AppVersion = "0.0.2"
+	AppVersion = "0.0.3"
 )
 
 var (
@@ -149,6 +149,7 @@ func main() {
 	client, err := google.DefaultClient(ctx, compute.ComputeScope)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	if *argInstance != "" {
@@ -176,7 +177,7 @@ func main() {
 	list, err := listInstances(client, project, zone)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		return
+		os.Exit(1)
 	}
 	printInstances(list)
 	os.Exit(0)
